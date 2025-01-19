@@ -1,0 +1,36 @@
+services:
+  user-service:
+    build:
+      context: ./user-service
+    ports:
+      - "5003:5003"
+    networks:
+      - restaurant-network
+
+  menu-service:
+    build:
+      context: ./menu-service
+    ports:
+      - "5001:5001"
+    networks:
+      - restaurant-network
+
+  order-service:
+    build:
+      context: ./order-service
+    ports:
+      - "5002:5002"
+    networks:
+      - restaurant-network
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "5000:5000"
+    networks:
+      - restaurant-network
+
+networks:
+  restaurant-network:
+    driver: bridge
